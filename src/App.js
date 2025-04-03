@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMovies } from "./features/movies/slices/movies";
 
 function App() {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
+
+  console.log("state", state.movies.isLoading);
+
+  if (state.movies.isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button
+        onClick={() => {
+          dispatch(fetchMovies());
+        }}
+      >
+        Fetch movies
+      </button>
+      {state.movies.data.results.map((movie) => {
+        return <h2>{movie.title}</h2>;
+      })}
     </div>
   );
 }
