@@ -2,16 +2,18 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchMovie = createAsyncThunk("fetchMovie", async (id) => {
   const response = await fetch(
-    "https://api.themoviedb.org/3/movie/movie_id?language=en-US?api_key=1139019838901e2a7ef4e29bf9ae2ef4"
+    // `https://api.themoviedb.org/3/movie/movie_id=${id}?language=en-US?api_key=1139019838901e2a7ef4e29bf9ae2ef4`
+    `https://api.themoviedb.org/3/movie/${id}?api_key=1139019838901e2a7ef4e29bf9ae2ef4`
   ).then((response) => response.json());
   return response;
 });
 
 const movieSlice = createSlice({
-  name: "fetchMovie",
+  name: "movie",
   initialState: {
-    data: null,
     isLoading: false,
+    data: null,
+
     isError: false,
   },
   extraReducers: (builder) => {
@@ -28,3 +30,5 @@ const movieSlice = createSlice({
     });
   },
 });
+
+export default movieSlice.reducer;

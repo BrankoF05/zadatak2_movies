@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  width: 70%;
+  width: 80%;
 }
 
 .movie-card {
@@ -11,8 +11,8 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  height: 25%;
-  justify-content: space-between;
+  height: 30%;
+  justify-content: flex-end;
 }
 
 .movie-card {
@@ -22,6 +22,11 @@
 }
 .movie-card:hover {
   transform: scale(0.9);
+}
+
+.movie-card h1 {
+  font-size: 3rem;
+  color: rgb(241, 75, 75);
 }
 
 .movie-card::before {
@@ -34,12 +39,12 @@
   border-radius: 20pt;
   border: 1pt solid rgb(0, 213, 241);
   border: none;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.8);
   z-index: 1;
 }
 
 .movie-card h1,
 .movie-card p {
-  position: relative; /* Position text above the overlay */
-  z-index: 2; /* Ensure text is above the overlay */
+  position: relative;
+  z-index: 2;
 }

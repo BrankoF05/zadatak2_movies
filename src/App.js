@@ -1,14 +1,14 @@
 import "./App.css";
+import MovieContainer from "./features/movie/components/MovieContainer";
 import MoviesContainer from "./features/movies/components/MoviesContainer";
-import { BrowserRouter as Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <MoviesContainer />
       <Routes>
         <Route path="/" element={<MoviesContainer />} />
-        {/* <Route path="/posts/:id" element={<Movi />} /> */}
+        <Route path="/movie/:id" element={<MovieContainer />} />
       </Routes>
     </div>
   );
