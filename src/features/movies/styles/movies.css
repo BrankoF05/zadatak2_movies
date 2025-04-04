@@ -1,0 +1,45 @@
+.movies-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 70%;
+}
+
+.movie-card {
+  border-radius: 20pt;
+  width: 25%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 25%;
+  justify-content: space-between;
+}
+
+.movie-card {
+  position: relative;
+  color: white;
+  transition: transform 0.2s;
+}
+.movie-card:hover {
+  transform: scale(0.9);
+}
+
+.movie-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20pt;
+  border: 1pt solid rgb(0, 213, 241);
+  border: none;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.movie-card h1,
+.movie-card p {
+  position: relative; /* Position text above the overlay */
+  z-index: 2; /* Ensure text is above the overlay */
+}

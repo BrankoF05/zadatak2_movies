@@ -1,29 +1,15 @@
 import "./App.css";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchMovies } from "./features/movies/slices/movies";
+import MoviesContainer from "./features/movies/components/MoviesContainer";
+import { BrowserRouter as Routes, Route } from "react-router-dom";
 
 function App() {
-  const dispatch = useDispatch();
-  const state = useSelector((state) => state);
-
-  console.log("state", state.movies.isLoading);
-
-  if (state.movies.isLoading) {
-    return <h1>Loading...</h1>;
-  }
-
   return (
     <div className="App">
-      <button
-        onClick={() => {
-          dispatch(fetchMovies());
-        }}
-      >
-        Fetch movies
-      </button>
-      {state.movies.data.results.map((movie) => {
-        return <h2>{movie.title}</h2>;
-      })}
+      <MoviesContainer />
+      <Routes>
+        <Route path="/" element={<MoviesContainer />} />
+        {/* <Route path="/posts/:id" element={<Movi />} /> */}
+      </Routes>
     </div>
   );
 }
