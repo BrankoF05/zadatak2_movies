@@ -1,14 +1,43 @@
 import React from "react";
 import "../styles/movies.css";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function Movies({ movies, image }) {
+export default function Movies({
+  movies,
+  image,
+  filter,
+  genres,
+  selectedGenre,
+}) {
   const navigate = useNavigate();
-  console.log("movies from movie", movies);
+
+  // const filteredMovies =
+  //   movies &&
+  //   movies.results.filter((movie) => {
+  //     const matchesTitle = movie && movie.title.toLowerCase().includes(filter);
+  //     const matchesGenre = selectedGenre
+  //       ? movie.genres.includes(selectedGenre)
+  //       : true;
+  //     return matchesTitle && matchesGenre;
+  //   });
+  console.log(selectedGenre);
+  const filteredMovies =
+    movies &&
+    movies.results.filter((movie) => {
+      const matchesTitle = movie.title
+        .toLowerCase()
+        .includes(filter.toLowerCase());
+      const matchesGenre =
+        selectedGenre.length > 0
+          ? movie.genres_id.some((genre) => selectedGenre.includes(genre.id))
+          : true;
+      return matchesTitle && matchesGenre;
+    });
+
   return (
     <div className="movies-cards">
-      {movies &&
-        movies.results.map((movie) => {
+      {filteredMovies &&
+        filteredMovies.map((movie) => {
           return (
             <div
               onClick={() => navigate(`/movie/${movie.id}`)}
@@ -20,7 +49,19 @@ export default function Movies({ movies, image }) {
               }}
             >
               <h1>{movie.title}</h1>
-              <p>{movie.overview}</p>
+              <div className="genres">
+                {movie.genre_ids && genres ? (
+                  movie.genre_ids.map((genreId) => {
+                    const genre = genres.genres.find((g) => g.id === genreId);
+                    return genre ? <h2 key={genre.id}>{genre.name}</h2> : null;
+                  })
+                ) : (
+                  <h1>greska</h1>
+                )}
+              </div>
+              <div className="overview">
+                <p>{movie.overview}</p>
+              </div>
             </div>
           );
         })}
