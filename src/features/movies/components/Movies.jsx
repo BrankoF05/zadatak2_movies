@@ -1,6 +1,8 @@
 import React from "react";
 import "../styles/movies.css";
 import { useNavigate } from "react-router-dom";
+import { Col, Row } from "antd";
+import MovieCard from "./MovieCard";
 
 export default function Movies({
   movies,
@@ -27,35 +29,19 @@ export default function Movies({
 
   return (
     <div className="movies-cards">
-      {filteredMovies &&
-        filteredMovies.map((movie) => {
-          return (
-            <div
-              onClick={() => navigate(`/movie/${movie.id}`)}
-              className="movie-card"
-              style={{
-                backgroundImage: `url(${image}${movie.poster_path})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            >
-              <h1>{movie.title}</h1>
-              <div className="genres">
-                {movie.genre_ids && genres ? (
-                  movie.genre_ids.map((genreId) => {
-                    const genre = genres.genres.find((g) => g.id === genreId);
-                    return genre ? <h2 key={genre.id}>{genre.name}</h2> : null;
-                  })
-                ) : (
-                  <h1>greska</h1>
-                )}
-              </div>
-              <div className="overview">
-                <p>{movie.overview}</p>
-              </div>
-            </div>
-          );
-        })}
+      <Row gutter={[16, 8]}>
+        {filteredMovies &&
+          filteredMovies.map((movie) => (
+            <Col key={movie.id} xs={24} sm={24} md={12} lg={8}>
+              <MovieCard
+                movie={movie}
+                navigate={navigate}
+                image={image}
+                genres={genres}
+              />
+            </Col>
+          ))}
+      </Row>
     </div>
   );
 }

@@ -10,5 +10,6 @@
   align-self: center;
   margin-top: 50px;
   display: flex;
+  flex-wrap: wrap;
   gap: 50px;
 }
