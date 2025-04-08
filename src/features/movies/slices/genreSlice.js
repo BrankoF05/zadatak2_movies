@@ -11,7 +11,7 @@ const genresSlice = createSlice({
   initialState: {
     isLoading: false,
     data: null,
-    selected_genre: "",
+    selected_genre: 0,
     isError: false,
   },
   reducers: {

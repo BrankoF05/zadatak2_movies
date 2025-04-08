@@ -11,15 +11,6 @@ export default function Movies({
 }) {
   const navigate = useNavigate();
 
-  // const filteredMovies =
-  //   movies &&
-  //   movies.results.filter((movie) => {
-  //     const matchesTitle = movie && movie.title.toLowerCase().includes(filter);
-  //     const matchesGenre = selectedGenre
-  //       ? movie.genres.includes(selectedGenre)
-  //       : true;
-  //     return matchesTitle && matchesGenre;
-  //   });
   console.log(selectedGenre);
   const filteredMovies =
     movies &&
@@ -27,10 +18,10 @@ export default function Movies({
       const matchesTitle = movie.title
         .toLowerCase()
         .includes(filter.toLowerCase());
-      const matchesGenre =
-        selectedGenre.length > 0
-          ? movie.genres_id.some((genre) => selectedGenre.includes(genre.id))
-          : true;
+
+      const matchesGenre = selectedGenre
+        ? movie.genre_ids.includes(selectedGenre)
+        : true;
       return matchesTitle && matchesGenre;
     });
 

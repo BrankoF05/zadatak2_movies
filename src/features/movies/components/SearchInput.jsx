@@ -9,7 +9,7 @@ export default function SearchInput({ setFilter }) {
   return (
     <div>
       <Input.Search
-        style={{ margin: "20px" }}
+        placeholder="Search by title"
         allowClear="true"
         onSearch={submitChange}
         size="large"

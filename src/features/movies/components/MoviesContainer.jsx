@@ -8,6 +8,7 @@ import "../styles/moviesContainer.css";
 import SearchInput from "./SearchInput";
 import { Flex } from "antd";
 import { setSelectedGenre } from "../slices/genreSlice";
+import SelectGenres from "./SelectGenres";
 
 export default function MoviesContainer() {
   const dispatch = useDispatch();
@@ -15,12 +16,6 @@ export default function MoviesContainer() {
   const [filter, setFilter] = useState("");
   const imageUrl = "https://image.tmdb.org/t/p/w500";
   const selectedGenre = useSelector((state) => state.genres.selected_genre);
-
-  function setGenre() {
-    dispatch(setSelectedGenre(28));
-    console.log(selectedGenre);
-    console.log(state);
-  }
 
   useEffect(() => {
     dispatch(fetchMovies());
@@ -33,8 +28,14 @@ export default function MoviesContainer() {
   return (
     <div>
       <Flex justify="center" align="center" vertical="true">
-        <SearchInput setFilter={setFilter} />
-        <button onClick={setGenre}>klik</button>{" "}
+        <div className="filters">
+          <SearchInput setFilter={setFilter} />
+          <SelectGenres
+            setSelectedGenre={setSelectedGenre}
+            genres={state.genres.data}
+          />
+        </div>
+
         <div className="movies">
           <Movies
             movies={state.movies.data}
