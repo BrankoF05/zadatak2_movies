@@ -3,15 +3,15 @@ import { Input } from "antd";
 
 export default function SearchInput({ setFilter }) {
   function submitChange(e) {
-    setFilter(e);
+    setFilter(e.target.value);
   }
 
   return (
     <div>
-      <Input.Search
+      <Input
         placeholder="Search by title"
         allowClear="true"
-        onSearch={submitChange}
+        onChange={submitChange}
         size="large"
       />
     </div>
