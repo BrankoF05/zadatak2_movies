@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchMovie } from "../slices/movieSlice";
+import { fetchMovie, fetchReviews } from "../slices/movieSlice";
 import Movie from "./Movie";
 
 export default function MovieContainer() {
@@ -9,10 +9,9 @@ export default function MovieContainer() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
 
-  console.log("State from movie container", state);
-
   useEffect(() => {
     dispatch(fetchMovie(id));
+    dispatch(fetchReviews(id));
   }, [dispatch, id]);
 
   if (state.movie.isLoading) {
@@ -25,7 +24,7 @@ export default function MovieContainer() {
 
   return (
     <div>
-      <Movie movie={state.movie.data} />
+      <Movie movie={state.movie.data} reviews={state.movie.reviews} />
     </div>
   );
 }
