@@ -1,7 +1,7 @@
 import React from "react";
-import { Rate, Divider, Flex, Row, Col } from "antd";
+import { Rate, Divider, Flex, Row, Col, Carousel } from "antd";
 
-export default function Movie({ movie, reviews }) {
+export default function Movie({ movie, reviews, images }) {
   console.log("Movie from page", movie);
   console.log("Reviews from page", reviews);
 
@@ -9,20 +9,41 @@ export default function Movie({ movie, reviews }) {
 
   return (
     <div>
-      <Flex style={{ width: "100%" }} align="center" vertical>
+      <Flex style={{ width: "100%" }} vertical>
         <Row gutter={[16, 16]}>
-          <Col xs={24} sm={24} md={11} lg={{ span: 7 }}>
-            <img
+          <Col xs={24} sm={24} md={11} lg={{ span: 5, offset: 5 }}>
+            <Carousel
+              style={{ width: "400px" }}
+              arrows
+              autoplaySpeed={3000}
+              autoplay={{ dotDuration: true }}
+              fade
+            >
+              {images ? (
+                images.posters
+                  .slice(0, 5)
+                  .map((poster) => (
+                    <img
+                      key={poster.id}
+                      src={poster && imageUrl + poster.file_path}
+                      alt={movie && movie.title}
+                    />
+                  ))
+              ) : (
+                <h2>No images found</h2>
+              )}
+            </Carousel>
+
+            {/* <img
               style={{ width: "100%" }}
-              src={movie && imageUrl + movie.poster_path}
+              src={images && imageUrl + images.posters[0].file_path}
               alt={movie && movie.title}
-            />
+            /> */}
           </Col>
           <Col xs={24} sm={24} md={12} lg={{ span: 10 }}>
             {" "}
             <h1>{movie && movie.title}</h1>
             <Rate
-              style={{ backgroundcolor: "whitesmoke" }}
               disabled="true"
               value={movie && movie.vote_average}
               count={10}

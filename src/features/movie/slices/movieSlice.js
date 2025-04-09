@@ -15,12 +15,20 @@ export const fetchReviews = createAsyncThunk("fetchReview", async (id) => {
   return response;
 });
 
+export const fetchImages = createAsyncThunk("fetchImages", async (id) => {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}/images?api_key=1139019838901e2a7ef4e29bf9ae2ef4`
+  ).then((response) => response.json());
+  return response;
+});
+
 const movieSlice = createSlice({
   name: "movie",
   initialState: {
     isLoading: false,
     data: null,
     reviews: null,
+    images: null,
     isError: false,
   },
   extraReducers: (builder) => {
@@ -44,6 +52,18 @@ const movieSlice = createSlice({
       state.reviews = action.payload;
     });
     builder.addCase(fetchReviews.rejected, (state, action) => {
+      console.log("Erorr", action.payload);
+      state.isError = true;
+    });
+    builder.addCase(fetchImages.pending, (state) => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(fetchImages.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.images = action.payload;
+    });
+    builder.addCase(fetchImages.rejected, (state, action) => {
       console.log("Erorr", action.payload);
       state.isError = true;
     });
