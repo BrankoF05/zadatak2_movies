@@ -28,20 +28,18 @@ export default function Movies({
     });
 
   return (
-    <div className="movies-cards">
-      <Row gutter={[16, 8]}>
-        {filteredMovies &&
-          filteredMovies.map((movie) => (
-            <Col key={movie.id} xs={24} sm={24} md={12} lg={8}>
-              <MovieCard
-                movie={movie}
-                navigate={navigate}
-                image={image}
-                genres={genres}
-              />
-            </Col>
-          ))}
-      </Row>
-    </div>
+    <Row gutter={[16, 16]} style={{ width: "70%", padding: "10px" }}>
+      {filteredMovies &&
+        filteredMovies.map((movie) => (
+          <Col key={movie.id} xs={24} sm={24} md={12} lg={6}>
+            <MovieCard
+              movie={movie}
+              navigate={navigate}
+              image={image}
+              genres={genres}
+            />
+          </Col>
+        ))}
+    </Row>
   );
 }

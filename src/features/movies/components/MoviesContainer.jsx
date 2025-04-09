@@ -36,7 +36,7 @@ export default function MoviesContainer() {
           />
         </div>
 
-        <div className="movies">
+        <Flex justify="center" align="center">
           <Movies
             movies={state.movies.data}
             image={imageUrl}
@@ -44,7 +44,7 @@ export default function MoviesContainer() {
             genres={state.genres.data}
             selectedGenre={selectedGenre}
           />
-        </div>
+        </Flex>
       </Flex>
     </div>
   );

@@ -1,5 +1,5 @@
 .movies-cards {
-  width: 80%;
+  width: 70%;
 }
 
 .movie-card {
@@ -10,6 +10,7 @@
   height: 750px;
   position: relative;
   color: white;
+  border: 2pt solid black;
   transition: transform 0.2s;
 }
 .movie-card:hover {
@@ -47,7 +48,7 @@
   border-radius: 20pt;
   border: 1pt solid rgb(0, 213, 241);
   border: none;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 1;
 }
 
