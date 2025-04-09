@@ -36,7 +36,7 @@ export default function MoviesContainer() {
           />
         </div>
 
-        <Flex justify="center" align="center">
+        <Flex justify="center" style={{ width: "100%" }}>
           <Movies
             movies={state.movies.data}
             image={imageUrl}
