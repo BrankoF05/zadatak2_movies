@@ -31,7 +31,6 @@ export default function MovieCard({ movie, navigate, image, genres }) {
       onClick={() => navigate(`/movie/${movie.id}`)}
       title={movie.title}
       hoverable
-      variant="borderless"
       cover={<img alt={movie.title} src={image + movie.poster_path} />}
     >
       <Space>

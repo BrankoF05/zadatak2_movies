@@ -9,39 +9,39 @@ import SearchInput from "./SearchInput";
 import { Flex } from "antd";
 import { setSelectedGenre } from "../slices/genreSlice";
 import SelectGenres from "./SelectGenres";
+import NavBar from "../../../components/NavBar";
 
 export default function MoviesContainer() {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
+  const movies = useSelector((state) => state.movies);
   const [filter, setFilter] = useState("");
   const imageUrl = "https://image.tmdb.org/t/p/w500";
   const selectedGenre = useSelector((state) => state.genres.selected_genre);
+  const genres = useSelector((state) => state.genres.data);
 
   useEffect(() => {
     dispatch(fetchMovies());
     dispatch(fetchGenres());
   }, [dispatch]);
 
-  if (state.movies.isLoading) {
+  if (movies.isLoading) {
     return <h1>Loading...</h1>;
   }
   return (
     <div>
+      <NavBar />
       <Flex justify="center" align="center" vertical="true">
         <div className="filters">
           <SearchInput setFilter={setFilter} />
-          <SelectGenres
-            setSelectedGenre={setSelectedGenre}
-            genres={state.genres.data}
-          />
+          <SelectGenres setSelectedGenre={setSelectedGenre} genres={genres} />
         </div>
 
         <Flex justify="center" style={{ width: "100%" }}>
           <Movies
-            movies={state.movies.data}
+            movies={movies.data}
             image={imageUrl}
             filter={filter}
-            genres={state.genres.data}
+            genres={genres}
             selectedGenre={selectedGenre}
           />
         </Flex>
