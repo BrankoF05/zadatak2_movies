@@ -7,6 +7,16 @@ export const fetchMovies = createAsyncThunk("fetchMovies", async () => {
   return response;
 });
 
+export const fetchMovieLists = createAsyncThunk(
+  "fetchMovieLists",
+  async (type) => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${type}?api_key=1139019838901e2a7ef4e29bf9ae2ef4`
+    ).then((response) => response.json());
+    return response;
+  }
+);
+
 const moviesSlice = createSlice({
   name: "movies",
   initialState: {
@@ -24,6 +34,18 @@ const moviesSlice = createSlice({
     });
     builder.addCase(fetchMovies.rejected, (state, action) => {
       console.log("Erorr", action.payload);
+      state.isError = true;
+    });
+
+    builder.addCase(fetchMovieLists.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(fetchMovieLists.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.data = action.payload;
+    });
+    builder.addCase(fetchMovieLists.rejected, (state, action) => {
+      console.log("Error", action.payload);
       state.isError = true;
     });
   },

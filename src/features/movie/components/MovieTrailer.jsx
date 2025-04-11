@@ -1,4 +1,4 @@
-import { Col, Divider, Flex } from "antd";
+import { Col, Flex } from "antd";
 import React from "react";
 import Youtube from "react-youtube";
 
@@ -17,16 +17,15 @@ export default function MovieTrailer({ videos }) {
             padding: "130px 0px",
           }}
         >
-          <Col Col xs={24} sm={24} md={24} lg={8}>
-            <h1 style={{ fontSize: "82px" }}>Watch the officall trailer!</h1>
+          <Col xs={24} sm={24} md={24} lg={8}>
+            <h1 style={{ fontSize: "82px" }}>Watch the offical trailer!</h1>
           </Col>
-          <Col Col xs={24} sm={24} md={24} lg={7}>
+          <Col xs={24} sm={24} md={24} lg={7}>
             {videos ? (
               (() => {
-                const officialTrailer = videos.results.find(
-                  (video) =>
-                    video.name.includes("Official") &&
-                    video.name.includes("Trailer")
+                const officialTrailer = videos.results.find((video) =>
+                  // video.name.includes("Official") &&
+                  video.name.includes("Trailer")
                 );
                 if (officialTrailer) {
                   return <Youtube videoId={officialTrailer.key} />;
@@ -39,9 +38,7 @@ export default function MovieTrailer({ videos }) {
             )}
           </Col>
         </Flex>
-      ) : (
-        <Divider />
-      )}
+      ) : null}
     </>
   );
 }

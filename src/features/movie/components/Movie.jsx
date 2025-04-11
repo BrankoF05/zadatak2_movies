@@ -6,7 +6,6 @@ import MovieTrailer from "./MovieTrailer";
 
 export default function Movie({ movie }) {
   const imageUrl = "https://image.tmdb.org/t/p/w500";
-  console.log(movie);
   return (
     <div style={{ marginTop: "20px" }}>
       <Flex style={{ width: "100%" }} vertical>
@@ -15,6 +14,7 @@ export default function Movie({ movie }) {
           imageUrl={movie && imageUrl}
           movie={movie && movie}
         />
+        <Divider />
         <MovieTrailer videos={movie && movie.videos} />
         <Divider />
         <MovieReviews reviews={movie && movie.reviews} />

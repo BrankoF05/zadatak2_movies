@@ -10,7 +10,7 @@ export default function MovieReviews({ reviews }) {
       <Flex gap={50} justify="center" wrap style={{ margin: 20 }}>
         {reviews && reviews.results.length > 0 ? (
           reviews.results.map((review) => (
-            <Col xs={24} sm={24} md={10} lg={6}>
+            <Col key={review.id} xs={24} sm={24} md={10} lg={6}>
               <Card key={review.id}>
                 {review.author_details.avatar_path != null ? (
                   <Avatar
