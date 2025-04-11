@@ -3,7 +3,7 @@ import { Flex, Col, Carousel, Card, Space, Rate, Divider } from "antd";
 
 export default function MovieInformation({ images, imageUrl, movie }) {
   return (
-    <Flex wrap justify="center" gap="large">
+    <Flex wrap justify="center" gap="large" style={{ padding: "20px 0px" }}>
       <Col xs={24} sm={24} md={11} lg={{ span: 5 }}>
         <Carousel
           // style={{ width: "400px" }}

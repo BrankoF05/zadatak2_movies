@@ -2,12 +2,11 @@ import React from "react";
 import { Card, Flex, Avatar, Rate, Divider, Col } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 
-export default function MovieReviews({ reviews, videos }) {
-  console.log(videos);
+export default function MovieReviews({ reviews }) {
   const imageUrl = "https://image.tmdb.org/t/p/w200";
   return (
     <Flex align="center" vertical>
-      {reviews && <h1>Reviews</h1>}
+      {reviews && <h1 style={{ fontSize: "52px" }}>Reviews</h1>}
       <Flex gap={50} justify="center" wrap style={{ margin: 20 }}>
         {reviews && reviews.results.length > 0 ? (
           reviews.results.map((review) => (
