@@ -23,6 +23,7 @@ export default function MovieReviews({ reviews, videos }) {
                 )}
                 <h1>{review.author_details.username}</h1>
                 <Rate
+                  allowHalf
                   disabled="true"
                   value={review && review.author_details.rating}
                   count={10}

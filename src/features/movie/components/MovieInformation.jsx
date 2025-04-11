@@ -35,6 +35,7 @@ export default function MovieInformation({ images, imageUrl, movie }) {
           <h1>{movie && movie.title}</h1>
           <Space>
             <Rate
+              allowHalf
               disabled="true"
               value={movie && movie.vote_average}
               count={10}
