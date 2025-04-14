@@ -40,7 +40,11 @@ export default function MoviesContainer() {
       <Flex justify="center" align="center" vertical="true">
         <div className="filters" style={{ paddingBottom: "20px" }}>
           <SearchInput setFilter={setFilter} />
-          <SelectGenres setSelectedGenre={setSelectedGenre} genres={genres} />
+          <SelectGenres
+            setSelectedGenre={setSelectedGenre}
+            genres={genres}
+            selectedGenre={selectedGenre}
+          />
           <SelecList changeMovieList={changeMovieList} list={list} />
         </div>
 
