@@ -3,7 +3,13 @@ import React from "react";
 
 export default function SelecList({ changeMovieList, list }) {
   return (
-    <Space>
+    <Space
+      style={{
+        border: "0.5pt solid blue",
+        borderRadius: "20pt",
+        padding: "10px",
+      }}
+    >
       <Button
         disabled={list === "now_playing"}
         name="now_playing"
