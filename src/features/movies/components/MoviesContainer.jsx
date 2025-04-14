@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import Movies from "./Movies";
 import "../styles/moviesContainer.css";
 import SearchInput from "./SearchInput";
-import { Flex } from "antd";
+import { Empty, Flex } from "antd";
 import { setSelectedGenre } from "../slices/genreSlice";
 import SelectGenres from "./SelectGenres";
 import NavBar from "../../../components/NavBar";
@@ -31,9 +31,13 @@ export default function MoviesContainer() {
     dispatch(fetchMovieLists(event.currentTarget.name));
   };
 
-  if (movies.isLoading) {
-    return <h1>Loading...</h1>;
-  }
+  // if (movies.isLoading) {
+  //   return (
+  //     <Flex justify="center" align="center" style={{ height: "100vh" }}>
+  //       <h1 style={{ fontSize: "82px" }}>Loading...</h1>
+  //     </Flex>
+  //   );
+  // }
   return (
     <div>
       <NavBar />
@@ -47,16 +51,31 @@ export default function MoviesContainer() {
           />
           <SelecList changeMovieList={changeMovieList} list={list} />
         </div>
-
-        <Flex justify="center" style={{ width: "100%" }}>
-          <Movies
-            movies={movies.data}
-            image={imageUrl}
-            filter={filter}
-            genres={genres}
-            selectedGenre={selectedGenre}
-          />
-        </Flex>
+        {movies.isLoading ? (
+          <Flex
+            justify="center"
+            align="center"
+            style={{
+              height: "100vh",
+              // width: "100%",
+              // backgroundColor: "black",
+              // opacity: "0.5",
+            }}
+          >
+            <h1 style={{ fontSize: "82px" }}>Loading...</h1>
+            <Empty style={{ color: "red" }} />
+          </Flex>
+        ) : (
+          <Flex justify="center" style={{ width: "100%" }}>
+            <Movies
+              movies={movies.data}
+              image={imageUrl}
+              filter={filter}
+              genres={genres}
+              selectedGenre={selectedGenre}
+            />
+          </Flex>
+        )}
       </Flex>
     </div>
   );

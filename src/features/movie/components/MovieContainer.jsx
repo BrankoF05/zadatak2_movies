@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { fetchMovie } from "../slices/movieSlice";
 import Movie from "./Movie";
 import NavBar from "../../../components/NavBar";
+import { Empty, Flex } from "antd";
 
 export default function MovieContainer() {
   const { id } = useParams();
@@ -14,18 +15,22 @@ export default function MovieContainer() {
     dispatch(fetchMovie(id));
   }, [dispatch, id]);
 
-  if (movie.isLoading) {
-    return <h1>Loading...</h1>;
-  }
-
-  if (movie.isError) {
-    return <h1>Error no movie</h1>;
-  }
-
   return (
     <div>
       <NavBar />
-      <Movie movie={movie.data} />
+      {movie.isError && (
+        <Flex justify="center" align="center" style={{ height: "100vh" }}>
+          <Empty />
+        </Flex>
+      )}{" "}
+      {movie.isLoading ? (
+        <Flex justify="center" align="center" style={{ height: "100vh" }}>
+          <h1 style={{ fontSize: "82px" }}>Loading...</h1>
+          <Empty />
+        </Flex>
+      ) : (
+        <Movie movie={movie.data} />
+      )}
     </div>
   );
 }
