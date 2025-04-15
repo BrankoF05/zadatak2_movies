@@ -1,7 +1,10 @@
 import React from "react";
 import { Input } from "antd";
+import { memo } from "react";
 
-export default function SearchInput({ setFilter }) {
+function SearchInput({ setFilter }) {
+  console.log("Search input");
+
   function submitChange(e) {
     setFilter(e.target.value);
   }
@@ -17,3 +20,5 @@ export default function SearchInput({ setFilter }) {
     </div>
   );
 }
+
+export default memo(SearchInput);

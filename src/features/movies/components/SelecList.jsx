@@ -1,7 +1,9 @@
 import { Button, Space } from "antd";
 import React from "react";
+import { memo } from "react";
 
-export default function SelecList({ changeMovieList, list }) {
+function SelecList({ changeMovieList, list }) {
+  console.log("select list");
   return (
     <Space
       style={{
@@ -50,3 +52,5 @@ export default function SelecList({ changeMovieList, list }) {
     </Space>
   );
 }
+
+export default memo(SelecList);

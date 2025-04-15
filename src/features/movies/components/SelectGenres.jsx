@@ -1,12 +1,10 @@
 import React from "react";
 import { Select } from "antd";
 import { useDispatch } from "react-redux";
+import { memo } from "react";
 
-export default function SelectGenres({
-  genres,
-  setSelectedGenre,
-  selectedGenre,
-}) {
+function SelectGenres({ genres, setSelectedGenre, selectedGenre }) {
+  console.log("Selected genres");
   const dispatch = useDispatch();
   const options = genres
     ? genres.genres.map((genre) => ({
@@ -29,3 +27,5 @@ export default function SelectGenres({
     </div>
   );
 }
+
+export default memo(SelectGenres);

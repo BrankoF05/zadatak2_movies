@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMovieLists, fetchMovies } from "../slices/moviesSlice";
 import { fetchGenres } from "../slices/genreSlice";
@@ -26,18 +26,14 @@ export default function MoviesContainer() {
     dispatch(fetchGenres());
   }, [dispatch]);
 
-  const changeMovieList = (event) => {
-    setList(event.currentTarget.name);
-    dispatch(fetchMovieLists(event.currentTarget.name));
-  };
+  const changeMovieList = useCallback(
+    (event) => {
+      setList(event.currentTarget.name);
+      dispatch(fetchMovieLists(event.currentTarget.name));
+    },
+    [dispatch]
+  );
 
-  // if (movies.isLoading) {
-  //   return (
-  //     <Flex justify="center" align="center" style={{ height: "100vh" }}>
-  //       <h1 style={{ fontSize: "82px" }}>Loading...</h1>
-  //     </Flex>
-  //   );
-  // }
   return (
     <div>
       <NavBar />
