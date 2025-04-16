@@ -6,11 +6,12 @@ import { useEffect } from "react";
 import Movies from "./Movies";
 import "../styles/moviesContainer.css";
 import SearchInput from "./SearchInput";
-import { Empty, Flex } from "antd";
+import { Flex } from "antd";
 import { setSelectedGenre } from "../slices/genreSlice";
 import SelectGenres from "./SelectGenres";
 import NavBar from "../../../components/NavBar";
 import SelecList from "./SelecList";
+import Loading from "../../../components/Loading";
 
 export default function MoviesContainer() {
   const dispatch = useDispatch();
@@ -48,19 +49,7 @@ export default function MoviesContainer() {
           <SelecList changeMovieList={changeMovieList} list={list} />
         </div>
         {movies.isLoading ? (
-          <Flex
-            justify="center"
-            align="center"
-            style={{
-              height: "100vh",
-              // width: "100%",
-              // backgroundColor: "black",
-              // opacity: "0.5",
-            }}
-          >
-            <h1 style={{ fontSize: "82px" }}>Loading...</h1>
-            <Empty style={{ color: "red" }} />
-          </Flex>
+          <Loading />
         ) : (
           <Flex justify="center" style={{ width: "100%" }}>
             <Movies

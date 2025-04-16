@@ -5,6 +5,7 @@ import { fetchMovie } from "../slices/movieSlice";
 import Movie from "./Movie";
 import NavBar from "../../../components/NavBar";
 import { Empty, Flex } from "antd";
+import Loading from "../../../components/Loading";
 
 export default function MovieContainer() {
   const { id } = useParams();
@@ -23,14 +24,7 @@ export default function MovieContainer() {
           <Empty />
         </Flex>
       )}{" "}
-      {movie.isLoading ? (
-        <Flex justify="center" align="center" style={{ height: "100vh" }}>
-          <h1 style={{ fontSize: "82px" }}>Loading...</h1>
-          <Empty />
-        </Flex>
-      ) : (
-        <Movie movie={movie.data} />
-      )}
+      {movie.isLoading ? <Loading /> : <Movie movie={movie.data} />}
     </div>
   );
 }
