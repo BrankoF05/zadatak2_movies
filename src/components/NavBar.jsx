@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { Layout, Typography } from "antd";
+import { Layout, Typography, Avatar, Dropdown, Space } from "antd";
 import { Link } from "react-router-dom";
-import { LogoutOutlined } from "@ant-design/icons";
+import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
 import { logout, loadUser } from "../features/login/slices/loginSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -11,6 +11,26 @@ const { Title } = Typography;
 export default function NavBar() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  console.log("user", user);
+
+  const items = [
+    {
+      key: "1",
+      label: user.user && user.user.username,
+      disabled: true,
+    },
+    {
+      type: "divider",
+    },
+    {
+      key: "2",
+      label: <a href="/list"> Movie list </a>,
+    },
+    {
+      key: "3",
+      icon: <LogoutOutlined onClick={() => dispatch(logout())} />,
+    },
+  ];
 
   useEffect(() => {
     dispatch(loadUser());
@@ -21,8 +41,7 @@ export default function NavBar() {
         style={{
           display: "flex",
           flexWrap: "wrap",
-          justifyContent: "center",
-          gap: "50px",
+          justifyContent: "space-around",
           backgroundColor: "whitesmoke",
           height: "10%",
         }}
@@ -37,13 +56,14 @@ export default function NavBar() {
           <Link to="/">Movies</Link>
         </Title>
         {user.user ? (
-          <LogoutOutlined
-            style={{ fontSize: "20px" }}
-            onClick={() => dispatch(logout())}
-          />
+          <Dropdown menu={{ items }}>
+            <Space>
+              <Avatar icon={<UserOutlined />} />
+            </Space>
+          </Dropdown>
         ) : (
           <Title
-            level={1}
+            level={3}
             style={{
               color: "white",
               textAlign: "center",
