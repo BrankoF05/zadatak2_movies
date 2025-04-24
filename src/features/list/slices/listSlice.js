@@ -7,6 +7,21 @@ export const fetchList = createAsyncThunk("fetchList", async () => {
   return response;
 });
 
+export const postData = createAsyncThunk("postData", async (mediaId) => {
+  const response = await fetch(
+    "https://api.themoviedb.org/3/list/8527742-favourite-movies/add_item?api_key=1139019838901e2a7ef4e29bf9ae2ef4",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ media_id: mediaId }),
+    }
+  ).then((response) => response.json());
+
+  return response;
+});
+
 const listSlice = createSlice({
   name: "list",
   initialState: {
@@ -27,6 +42,10 @@ const listSlice = createSlice({
     builder.addCase(fetchList.rejected, (state, action) => {
       console.log("Error", action.payload);
       state.isError = true;
+    });
+
+    builder.addCase(postData.rejected, (action) => {
+      console.log("Error", action.payload);
     });
   },
 });

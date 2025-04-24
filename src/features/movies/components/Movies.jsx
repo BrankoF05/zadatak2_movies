@@ -12,7 +12,7 @@ export default function Movies({
   selectedGenre,
 }) {
   const navigate = useNavigate();
-
+  console.log(movies && movies.results[0]);
   const filteredMovies =
     movies &&
     movies.results.filter((movie) => {
