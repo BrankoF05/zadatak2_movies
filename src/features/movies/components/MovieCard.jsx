@@ -1,14 +1,20 @@
-import React, { useState } from "react";
-import { Card, Flex, Space } from "antd";
+import React, { useEffect, useState } from "react";
+import { Card, Flex } from "antd";
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
+import { changeList, fetchList } from "../../list/slices/listSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { postData } from "../../list/slices/listSlice";
-import { useDispatch } from "react-redux";
 
-export default function MovieCard({ movie, navigate, image, genres }) {
+export default function MovieCard({ list, movie, navigate, image, genres }) {
   const dispatch = useDispatch();
   const [test, setTest] = useState(false);
+
+  const [isMovieInList, setMovieList] = useState(
+    list.data && list.data.items.some((item) => item.id === movie.id)
+  );
+
   return (
+    // <Link to={`/movie/${movie.id}`}>
     <Card
       // onClick={() => navigate(`/movie/${movie.id}`)}
       title={movie.title}
@@ -26,22 +32,36 @@ export default function MovieCard({ movie, navigate, image, genres }) {
             <h1>No genres</h1>
           )}
         </Flex>
-        {test ? (
+        {isMovieInList ? (
           <HeartFilled
-            onClick={() => {
-              setTest(false);
-              dispatch(postData(movie.id));
+            onClick={(e) => {
+              e.stopPropagation();
+              e.nativeEvent.stopImmediatePropagation();
+              setMovieList(!isMovieInList);
+
+              dispatch(
+                changeList({ string: "remove_item", movieId: movie.id })
+              );
             }}
             style={{ fontSize: "34px" }}
           />
         ) : (
           <HeartOutlined
+            onClick={(e) => {
+              setMovieList(!isMovieInList);
+
+              dispatch(
+                changeList({
+                  string: "add_item",
+                  movieId: movie.id,
+                })
+              );
+            }}
             style={{ fontSize: "34px" }}
-            disabled={test}
-            onClick={() => setTest(true)}
           />
         )}
       </Flex>
     </Card>
+    // </Link>
   );
 }

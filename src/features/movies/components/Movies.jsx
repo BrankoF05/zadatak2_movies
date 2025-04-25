@@ -3,6 +3,9 @@ import "../styles/movies.css";
 import { useNavigate } from "react-router-dom";
 import { Col, Row } from "antd";
 import MovieCard from "./MovieCard";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { fetchList } from "../../list/slices/listSlice";
 
 export default function Movies({
   movies,
@@ -11,6 +14,13 @@ export default function Movies({
   genres,
   selectedGenre,
 }) {
+  const list = useSelector((state) => state.list);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchList());
+  }, []);
+
   const navigate = useNavigate();
   console.log(movies && movies.results[0]);
   const filteredMovies =
@@ -32,6 +42,7 @@ export default function Movies({
         filteredMovies.map((movie) => (
           <Col key={movie.id} xs={24} sm={24} md={12} lg={6}>
             <MovieCard
+              list={list}
               movie={movie}
               navigate={navigate}
               image={image}
