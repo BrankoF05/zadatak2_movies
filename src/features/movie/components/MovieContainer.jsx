@@ -14,6 +14,7 @@ export default function MovieContainer() {
 
   useEffect(() => {
     dispatch(fetchMovie(id));
+    window.scrollTo(0, 0);
   }, [dispatch, id]);
 
   return (

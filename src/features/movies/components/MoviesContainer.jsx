@@ -21,6 +21,7 @@ export default function MoviesContainer() {
   const selectedGenre = useSelector((state) => state.genres.selected_genre);
   const genres = useSelector((state) => state.genres.data);
   const [list, setList] = useState("");
+  const selectedList = useSelector((state) => state.list);
 
   useEffect(() => {
     dispatch(fetchMovies());
@@ -53,11 +54,12 @@ export default function MoviesContainer() {
         ) : (
           <Flex justify="center" style={{ width: "100%" }}>
             <Movies
-              movies={movies.data}
+              movies={movies.data && movies.data.results}
               image={imageUrl}
               filter={filter}
               genres={genres}
               selectedGenre={selectedGenre}
+              list={selectedList}
             />
           </Flex>
         )}

@@ -14,7 +14,7 @@ export default function MovieTrailer({ videos }) {
           style={{
             backgroundColor: "black",
             color: "whitesmoke",
-            padding: "130px 0px",
+            padding: "200px 0px",
           }}
         >
           <Col xs={24} sm={24} md={24} lg={8}>
