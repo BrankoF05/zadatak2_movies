@@ -28,6 +28,7 @@ const userSlice = createSlice({
     },
     loadUser: (state) => {
       const user = localStorage.getItem("user");
+      state.error = null;
       if (user) {
         state.isLogged = true;
         state.user = JSON.parse(user);

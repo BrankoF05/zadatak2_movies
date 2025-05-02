@@ -22,8 +22,6 @@ export default function Movies({
   }, [dispatch]);
 
   const navigate = useNavigate();
-  console.log("Filmovi", movies);
-  console.log("lust", list);
   const filteredMovies =
     movies &&
     movies.filter((movie) => {
