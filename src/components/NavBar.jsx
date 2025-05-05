@@ -11,7 +11,6 @@ const { Title } = Typography;
 export default function NavBar() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  console.log("user", user);
 
   const items = [
     {

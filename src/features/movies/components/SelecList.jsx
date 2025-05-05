@@ -3,7 +3,6 @@ import React from "react";
 import { memo } from "react";
 
 function SelecList({ changeMovieList, list }) {
-  console.log("select list");
   return (
     <Space
       style={{

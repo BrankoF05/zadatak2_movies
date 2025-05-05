@@ -9,8 +9,6 @@ export default function Login({ user, dispatch }) {
     console.log("Failed:", errorInfo);
   };
 
-  console.log("error", user && user.error);
-
   return (
     <Flex
       vertical

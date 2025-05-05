@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Empty } from "antd";
+import { Flex } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 
 export default function Loading() {
@@ -11,7 +11,6 @@ export default function Loading() {
         height: "100vh",
       }}
     >
-      {/* <h1 style={{ fontSize: "82px" }}>Loading...</h1> */}
       <LoadingOutlined style={{ fontSize: "100px" }} />
     </Flex>
   );

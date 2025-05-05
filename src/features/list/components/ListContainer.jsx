@@ -30,8 +30,6 @@ export default function ListContainer() {
     navigate("/");
   }
 
-  console.log("Lista", list);
-
   return (
     <>
       <NavBar />

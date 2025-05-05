@@ -3,8 +3,6 @@ import { Input } from "antd";
 import { memo } from "react";
 
 function SearchInput({ setFilter }) {
-  console.log("Search input");
-
   function submitChange(e) {
     setFilter(e.target.value);
   }

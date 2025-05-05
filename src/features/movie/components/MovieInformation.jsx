@@ -5,15 +5,7 @@ export default function MovieInformation({ images, imageUrl, movie }) {
   return (
     <Flex wrap justify="center" gap="large">
       <Col xs={24} sm={24} md={11} lg={{ span: 5 }}>
-        <Carousel
-          // style={{ width: "400px" }}
-          // arrows
-          autoplay
-          autoplaySpeed={2000}
-          // autoplay={{ dotDuration: true }}
-          dots={false}
-          fade
-        >
+        <Carousel autoplay autoplaySpeed={2000} dots={false} fade>
           {images ? (
             images.posters
               .slice(0, 5)

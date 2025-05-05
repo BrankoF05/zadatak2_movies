@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { memo } from "react";
 
 function SelectGenres({ genres, setSelectedGenre, selectedGenre }) {
-  console.log("Selected genres");
   const dispatch = useDispatch();
   const options = genres
     ? genres.genres.map((genre) => ({
