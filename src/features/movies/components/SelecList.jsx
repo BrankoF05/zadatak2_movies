@@ -1,10 +1,12 @@
-import { Button, Space } from "antd";
+import { Button, Flex } from "antd";
 import React from "react";
 import { memo } from "react";
 
 function SelecList({ changeMovieList, list }) {
   return (
-    <Space
+    <Flex
+      wrap
+      justify="center"
       style={{
         border: "0.5pt solid blue",
         borderRadius: "20pt",
@@ -48,7 +50,7 @@ function SelecList({ changeMovieList, list }) {
       >
         Upcoming
       </Button>
-    </Space>
+    </Flex>
   );
 }
 

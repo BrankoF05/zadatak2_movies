@@ -8,8 +8,10 @@
 
 .filters {
   align-self: center;
-  margin-top: 50px;
+
   display: flex;
+  justify-content: center;
+  margin-top: 50px;
   align-items: center;
   flex-wrap: wrap;
   gap: 50px;

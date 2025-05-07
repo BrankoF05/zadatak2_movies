@@ -39,7 +39,7 @@ export default function Movies({
     <Row gutter={[16, 16]} style={{ width: "70%", padding: "10px" }}>
       {filteredMovies &&
         filteredMovies.map((movie) => (
-          <Col key={movie.id} xs={24} sm={24} md={12} lg={6}>
+          <Col key={movie.id} xs={24} sm={24} md={12} lg={8} xl={6}>
             <MovieCard
               list={list ? list : null}
               movie={movie}
