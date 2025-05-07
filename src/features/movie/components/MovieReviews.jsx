@@ -1,16 +1,16 @@
 import React from "react";
-import { Card, Flex, Avatar, Rate, Divider, Col } from "antd";
+import { Card, Flex, Avatar, Row, Rate, Divider, Col } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 
 export default function MovieReviews({ reviews }) {
   const imageUrl = "https://image.tmdb.org/t/p/w200";
   return (
-    <Flex align="center" vertical>
+    <Flex align="center" justify="center" vertical style={{ width: "100%" }}>
       {reviews && <h1 style={{ fontSize: "52px" }}>Reviews</h1>}
-      <Flex gap={50} justify="center" wrap style={{ margin: 20 }}>
+      <Row gutter={[16, 16]} style={{ width: "80%", padding: "10px" }}>
         {reviews && reviews.results.length > 0 ? (
           reviews.results.map((review) => (
-            <Col key={review.id} xs={24} sm={24} md={10} lg={6}>
+            <Col key={review.id} xs={24} sm={24} md={12} lg={8}>
               <Card key={review.id}>
                 {review.author_details.avatar_path != null ? (
                   <Avatar
@@ -35,7 +35,7 @@ export default function MovieReviews({ reviews }) {
         ) : (
           <h2>No reviews found</h2>
         )}
-      </Flex>
+      </Row>
     </Flex>
   );
 }

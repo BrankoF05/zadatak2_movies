@@ -21,7 +21,7 @@ export default function MovieContainer() {
     <div>
       <NavBar />
       {movie.isError && (
-        <Flex justify="center" align="center" style={{ height: "100vh" }}>
+        <Flex justify="left" align="center" style={{ height: "100vh" }}>
           <Empty />
         </Flex>
       )}{" "}
