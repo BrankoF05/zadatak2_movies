@@ -4,7 +4,6 @@ import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { changeList } from "../features/list/slices/listSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-// import { Link } from "react-router-dom";
 
 export default function MovieCard({ list, movie, navigate, image, genres }) {
   const dispatch = useDispatch();
@@ -27,25 +26,34 @@ export default function MovieCard({ list, movie, navigate, image, genres }) {
       cover={<img alt={movie.title} src={image + movie.poster_path} />}
     >
       <Flex justify="space-between" gap={50} wrap>
-        {showGenre && (
-          <Flex gap={10} wrap>
-            {movie.genre_ids && genres ? (
-              movie.genre_ids.map((genreId) => {
-                const genre = genres.genres.find((g) => g.id === genreId);
-                return genre ? (
-                  <p
-                    style={{ fontWeight: "lighter", margin: "0px" }}
-                    key={genre.id}
-                  >
-                    {genre.name}
-                  </p>
-                ) : null;
-              })
-            ) : (
-              <h1>No genres</h1>
-            )}
-          </Flex>
-        )}
+        <Flex
+          gap={10}
+          wrap
+          style={{
+            opacity: showGenre ? 1 : 0,
+            visibility: showGenre ? 1 : 0,
+            transition:
+              "opacity 0.5s ease, visibility 0.5s ease, max-height 0.5s ease",
+            maxHeight: showGenre ? 75 : 0,
+            overflow: "hidden",
+          }}
+        >
+          {movie.genre_ids && genres ? (
+            movie.genre_ids.map((genreId) => {
+              const genre = genres.genres.find((g) => g.id === genreId);
+              return genre ? (
+                <p
+                  style={{ fontWeight: "lighter", margin: "0px" }}
+                  key={genre.id}
+                >
+                  {genre.name}
+                </p>
+              ) : null;
+            })
+          ) : (
+            <h1>No genres</h1>
+          )}
+        </Flex>
       </Flex>
       <Flex
         justify="space-between"
