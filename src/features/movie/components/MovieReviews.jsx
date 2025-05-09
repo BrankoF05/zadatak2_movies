@@ -33,7 +33,9 @@ export default function MovieReviews({ reviews }) {
             </Col>
           ))
         ) : (
-          <h2>No reviews found</h2>
+          <Col span={24} style={{ textAlign: "center" }}>
+            <h2>No reviews found</h2>
+          </Col>
         )}
       </Row>
     </Flex>
