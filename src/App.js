@@ -1,17 +1,58 @@
 import "./App.css";
-import MovieContainer from "./features/movie/components/MovieContainer";
-import MoviesContainer from "./features/movies/components/MoviesContainer";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
-import ListContainer from "./features/list/components/ListContainer";
-import LoginContainer from "./features/login/components/LoginContainer";
+import { Suspense } from "react";
+import Loading from "./components/Loading";
+
+const LazyMovies = React.lazy(() =>
+  import("./features/movies/components/MoviesContainer")
+);
+const LazyMovie = React.lazy(() =>
+  import("./features/movie/components/MovieContainer")
+);
+const LazyLogin = React.lazy(() =>
+  import("./features/login/components/LoginContainer")
+);
+const LazyList = React.lazy(() =>
+  import("./features/list/components/ListContainer")
+);
+
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<MoviesContainer />} />
-        <Route path="/movie/:id" element={<MovieContainer />} />
-        <Route path="/login" element={<LoginContainer />} />
-        <Route path="/list" element={<ListContainer />} />
+        <Route
+          path="/"
+          element={
+            <Suspense fallback={<Loading />}>
+              <LazyMovies />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/movie/:id"
+          element={
+            <Suspense fallback={<Loading />}>
+              <LazyMovie />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <Suspense fallback={<Loading />}>
+              <LazyLogin />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/list"
+          element={
+            <Suspense fallback={<Loading />}>
+              <LazyList />
+            </Suspense>
+          }
+        />
       </Routes>
     </div>
   );
