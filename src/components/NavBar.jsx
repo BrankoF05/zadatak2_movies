@@ -3,14 +3,15 @@ import { Layout, Typography, Avatar, Dropdown, Space } from "antd";
 import { Link } from "react-router-dom";
 import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
 import { logout, loadUser } from "../features/login/slices/loginSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import useAuth from "../hooks/useAuth";
 
 const { Header } = Layout;
 const { Title } = Typography;
 
 export default function NavBar() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  const user = useAuth();
 
   const items = [
     {

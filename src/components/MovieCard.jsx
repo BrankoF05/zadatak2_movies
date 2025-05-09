@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { Button, Card, Flex } from "antd";
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { changeList } from "../features/list/slices/listSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 export default function MovieCard({ list, movie, navigate, image, genres }) {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  const user = useAuth();
   const [showGenre, setShowGenre] = useState(false);
   const [isMovieInList, setMovieList] = useState(
     list

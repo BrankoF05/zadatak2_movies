@@ -7,6 +7,7 @@ import { Col, Flex, Row } from "antd";
 import { fetchGenres } from "../../movies/slices/genreSlice";
 import MovieCard from "../../../components/MovieCard";
 import Loading from "../../../components/Loading";
+import useAuth from "../../../hooks/useAuth";
 
 export default function ListContainer() {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ export default function ListContainer() {
   const navigate = useNavigate();
   const imageUrl = "https://image.tmdb.org/t/p/w500";
   const genres = useSelector((state) => state.genres.data);
-  const user = useSelector((state) => state.user);
+  const user = useAuth();
   // useEffect(() => {
   //   if (user.user === null) {
   //     navigate("/");

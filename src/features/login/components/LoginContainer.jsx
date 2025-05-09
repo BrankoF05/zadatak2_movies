@@ -2,13 +2,14 @@ import React from "react";
 
 import NavBar from "../../../components/NavBar";
 import { Flex } from "antd";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Login from "./Login";
+import useAuth from "../../../hooks/useAuth";
 export default function LoginContainer() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  const user = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
