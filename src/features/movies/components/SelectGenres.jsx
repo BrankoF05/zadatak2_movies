@@ -14,12 +14,12 @@ function SelectGenres({ genres, setSelectedGenre, selectedGenre }) {
   return (
     <div>
       <Select
+        placeholder="Select genre"
         style={{ width: "250px" }}
         options={options}
         popupMatchSelectWidth="true"
         size="large"
         value={selectedGenre !== 0 && selectedGenre}
-        placeholder="Select genre"
         allowClear="true"
         onChange={(e) => dispatch(setSelectedGenre(e))}
       />
