@@ -19,7 +19,7 @@ function SelectGenres({ genres, setSelectedGenre, selectedGenre }) {
         options={options}
         popupMatchSelectWidth="true"
         size="large"
-        value={selectedGenre !== 0 && selectedGenre}
+        value={selectedGenre !== 0 ? selectedGenre : null}
         allowClear="true"
         onChange={(e) => dispatch(setSelectedGenre(e))}
       />
